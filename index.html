@@ -1,3 +1,32 @@
+<script>
+  const form = document.getElementById("registrationForm");
+  const thankYouMessage = document.getElementById("thankYouMessage");
+  const formCard = document.getElementById("formCard");
+  const stressPanel = document.getElementById("stressPanel");
+
+  form.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    // Save to sessionStorage so we remember
+    sessionStorage.setItem("formSubmitted", "true");
+
+    thankYouMessage.style.display = "block";
+
+    setTimeout(() => {
+      formCard.style.display = "none";
+      stressPanel.style.display = "block";
+    }, 1500);
+  });
+
+  // On page load, check if user already submitted
+  window.addEventListener("DOMContentLoaded", () => {
+    if (sessionStorage.getItem("formSubmitted") === "true") {
+      formCard.style.display = "none";
+      thankYouMessage.style.display = "none";
+      stressPanel.style.display = "block";
+    }
+  });
+</script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -190,3 +219,4 @@
 
 </body>
 </html>
+
