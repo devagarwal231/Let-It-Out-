@@ -30,6 +30,6 @@ Feel free to open issues or submit pull requests to improve this project.
 
 ---
 
-**Created by [Your Name]**
+**Created by [Ayushman Agarwal]**
 
 
