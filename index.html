@@ -12,44 +12,39 @@
       margin: 0;
       font-family: "Segoe UI", sans-serif;
       background: linear-gradient(145deg, #d6e4f0, #f0f4f8);
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      perspective: 1000px;
+      flex-direction: column;
+      padding: 40px 20px;
     }
 
-    .form-card {
+    .form-card, .panel-card {
       background-color: #ffffff;
-      padding: 40px 30px;
+      padding: 30px;
       border-radius: 15px;
       width: 100%;
-      max-width: 400px;
+      max-width: 500px;
       box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
-      transform: rotateY(0deg);
-      transition: transform 0.6s ease, box-shadow 0.4s ease;
-    }
-
-    .form-card:hover {
-      transform: rotateY(3deg);
-      box-shadow: 0 25px 45px rgba(0, 0, 0, 0.15);
+      margin-top: 20px;
+      transition: 0.4s ease;
     }
 
     h2 {
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       color: #333;
     }
 
     label {
-      margin-top: 15px;
       display: block;
+      margin-top: 15px;
       font-weight: 600;
       color: #444;
     }
 
-    input,
-    select {
+    input, select, textarea {
       width: 100%;
       padding: 12px;
       margin-top: 5px;
@@ -57,6 +52,11 @@
       border: 1px solid #ccc;
       background-color: #f9f9f9;
       font-size: 15px;
+    }
+
+    textarea {
+      height: 100px;
+      resize: vertical;
     }
 
     button {
@@ -82,22 +82,51 @@
       font-size: 18px;
       font-weight: 600;
       color: green;
-      margin-top: 25px;
+      margin-top: 15px;
+    }
+
+    .panel-card {
       display: none;
     }
 
+    ul {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+
+    ul li {
+      margin-bottom: 8px;
+      color: #444;
+    }
+
+    .contact-info {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 16px;
+      color: #444;
+    }
+
+    .contact-info a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+
     @media (max-width: 480px) {
-      .form-card {
-        padding: 30px 20px;
+      .form-card, .panel-card {
+        padding: 25px 20px;
       }
     }
   </style>
 </head>
 <body>
 
-  <div class="form-card">
+  <!-- Registration Form -->
+  <div class="form-card" id="formCard">
     <h2>Register</h2>
-
     <form id="registrationForm">
       <label for="phone">Phone Number</label>
       <input type="tel" id="phone" name="phone" placeholder="e.g. 9876543210" required>
@@ -116,20 +145,46 @@
 
       <button type="submit">Submit</button>
     </form>
+    <div class="thank-you" id="thankYouMessage">✅ Thank you for your participation!</div>
+  </div>
 
-    <div class="thank-you" id="thankYouMessage">
-      ✅ Thank you for your participation!
+  <!-- Stress Release Panel -->
+  <div class="panel-card" id="stressPanel">
+    <h2>How to Release Stress</h2>
+    <p>Here are a few helpful ways to deal with stress:</p>
+    <ul>
+      <li>🧘 Practice deep breathing or meditation</li>
+      <li>🎧 Listen to calming music</li>
+      <li>🏃 Take a short walk or stretch</li>
+      <li>📖 Write down your thoughts to clear your mind</li>
+      <li>💬 Talk to someone you trust</li>
+    </ul>
+
+    <label for="thoughts">Write Your Feelings (Optional)</label>
+    <textarea id="thoughts" placeholder="Share anything you’d like to get off your chest..."></textarea>
+
+    <button onclick="alert('Your response has been noted. Stay strong! ❤️')">Submit My Thoughts</button>
+
+    <!-- Contact Info -->
+    <div class="contact-info">
+      📞 Need to talk? Call me at <a href="tel:+917479933306">+91 74799 33306</a><br />
+      💬 Or chat on WhatsApp: <a href="https://wa.me/917479933306" target="_blank">Message me</a>
     </div>
   </div>
 
   <script>
     const form = document.getElementById("registrationForm");
     const thankYouMessage = document.getElementById("thankYouMessage");
+    const formCard = document.getElementById("formCard");
+    const stressPanel = document.getElementById("stressPanel");
 
     form.addEventListener("submit", function(event) {
       event.preventDefault();
-      form.style.display = "none";
       thankYouMessage.style.display = "block";
+      setTimeout(() => {
+        formCard.style.display = "none";
+        stressPanel.style.display = "block";
+      }, 1500);
     });
   </script>
 
